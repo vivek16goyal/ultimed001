@@ -33,31 +33,8 @@
             }
         }
     </script>
-  
+
     <style>
-        .tooltip {
-            position: relative;
-            display: inline-block;
-            border-bottom: 1px dotted black;
-        }
-
-            .tooltip .tooltiptext {
-                visibility: hidden;
-                width: 120px;
-                background-color: black;
-                color: #fff;
-                text-align: center;
-                border-radius: 6px;
-                padding: 5px 0;
-                /* Position the tooltip */
-                position: absolute;
-                z-index: 1;
-            }
-
-            .tooltip:hover .tooltiptext {
-                visibility: visible;
-            }
-
         .wrapper {
             position: absolute;
             z-index: 1;
@@ -191,7 +168,7 @@
             <img id="on" src="assets/img/green.gif" alt="Online" class="ui-btn-left alert-imgOn activeImg" style="display: none">
             <img id="img_lnk_back" src="assets/img/back.png" alt="Back" class="ui-btn-left alert-imgOn" style="display: none; margin-left: 20px; cursor: pointer;">
             <a id="lnk_login" href="#Login" data-rel="popup" data-transition="flip" data-position-to="window" class="jqm-search-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-user ui-nodisc-icon ui-alt-icon ui-btn-right " style="background-color: white; display: none;">Login</a>
-            <a id="lnk_logout" class="jqm-search-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-power ui-nodisc-icon ui-alt-icon ui-btn-right" style="background-color: white; display: none;" onclick="logout()">Logout</a>
+            <a id="lnk_logout" class="jqm-search-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-power ui-nodisc-icon ui-alt-icon ui-btn-right" style="background-color: white; display: none;" onclick="logout('1')">Logout</a>
             <h2 id="heading">TiaERP@App</h2>
         </div>
         <div role="main" id="Homepage">
@@ -205,7 +182,7 @@
                                 <div class="menu-icon">
                                     <i class="fa fa-cog"></i>
                                 </div>
-                                <div class="menu-content tooltip">
+                                <div class="menu-content">
                                     <span>SETTING</span>
                                 </div>
                                 <div class="menu-close">
@@ -215,7 +192,7 @@
                             <div class="menu-body">
                                 <center>
                         <br />
-                             <ul data-role="listview" style="width:70%"  class="ui-listview" id="setting-menu">
+                             <ul data-role="listview" style="width:85%"  class="ui-listview" id="setting-menu">
                                  <li onclick="GetAppUserInfo();" class='ui-li-has-icon ui-first-child' ><a href="#appSetting-div"  data-transition="flip" style='background-color:#999; color:white;' class='ui-btn'><img style='margin-top:-7px;' src='assets/img/cog2.png' alt='USA' class='ui-li-icon'>App Setting</a></li>
                                  <!--<li  class='ui-li-has-icon ui-first-child' ><a href="#DisplaySetting"   data-transition="flip" style='background-color:#999; color:white;' class='ui-btn'><img style='margin-top:-7px;' src='assets/img/cog2.png' alt='USA' class='ui-li-icon'>Display Setting</a></li>-->
                              </ul>
@@ -223,29 +200,13 @@
                             </div>
                         </li>
 
-                        <li class="menu-item" id="li3" onclick="exitAppMenu()" style='position: absolute; top: 46px;'>
+                        <li class="menu-item" id="li3" onclick="exitAppMenu()" style='position: absolute; top: 15vmin;'>
                             <div class="menu-header">
                                 <div class="menu-icon">
                                     <i class="fa fa-sign-out"></i>
                                 </div>
-                                <div class="tooltip">
-                                    Exit<span class="tooltiptext">Exit</span>
-
-                                </div>
+                                <div class="menu-content"><span>Exit</span> </div>
                                 <div class="menu-close"><i class="fa fa-times"></i></div>
-                            </div>
-                        </li>
-
-                        <li class="menu-item" id="t&d" onclick="termscondition()" style='position: absolute; top: 15vmin;'>
-                            <div class="menu-header">
-                                <div class="menu-icon">
-                                    <i class="fa">
-                                        <img src='assets/img/menu/TERM AND CONDITION.png' style='width: 10vmin;' /></i>
-
-                                </div>
-                                <div class="menu-content tooltip"><span class="tooltiptext">Terms and Condition</span> </div>
-
-
                             </div>
                         </li>
 
@@ -254,7 +215,8 @@
 
             </div>
 
-
+            <br />
+           
             <!--<a id="setting_a" onclick="SettingWind()" style="position: fixed; left: 5px; top: 60px;">
                 <img src="assets/img/wrench.png" style="width: 25px; height: 25px; padding: 7px; background-color: #1390cf; border-radius: 20px" /></a>
             <a id="user_a" href="#ReqSend-Acc" style="position: fixed; right: 5px; top: 60px;">
@@ -269,7 +231,6 @@
                             <br />
                             <br />
                             Visit: <a href="www.goyalonline.com" onclick="Reset()">www.goyalonline.com </a>
-                            <a href ="www/index.html" onclick ="loadhome()">home page</a>
                         </p>
 
 
@@ -306,18 +267,18 @@
 
             <div data-role="popup" id="Login" data-theme="a" data-overlay-theme="b" class="ui-corner-all set-min-width " data-dismissible="false">
                 <form id="login-form">
-                    <div class="popup-sub-div">
+                    <div class="popup-sub-div" >
                         <p class="popup-heading">Login</p>
                         <a class="jqm-search-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-delete ui-nodisc-icon ui-alt-icon ui-btn-right close-img " style="background-color: #1390cf;" data-rel="back"></a>
                         <center>
                             <img src="assets/img/User.png" alt="jQuery Mobile" style="width:80px;height:80px;">
                             <input type="text" name="UserNmae" id="UserNmae" value="" placeholder="User Name" data-theme="a" >
                             <input type="password" name="Pass" id="Pass" value="" placeholder="Password" data-theme="a" >
-                            
                             <label style="margin-top:0px;padding-left:2px;font-weight:normal">
                                 <input type="checkbox" name="checkbox-0" id="chkRemPass">Stay singed in
                             </label>
                             <div id="div-btn-login" class="ui-btn ui-input-btn ui-corner-all ui-shadow">OK<input type="button" value="OK"  style="height:40px" onclick="login()"></div>
+                            
                             <div class="msgDiv">
                                 <center>
                                     <p id="LoginMsg" class="msgContent">
@@ -339,17 +300,12 @@
         </div>
     </div>
 
-    <div data-role="page" id="Item-cart" data-title="Inbox" class="jqm-demos">
-        <div data-role="header" data-position="fixed" data-theme="true">
+    <div data-role="page" id="Item-cart" class="jqm-demos">
+        <div data-role="header" data-position="fixed" data-theme="true" class="jqm-header">
             <h1 style="color: white;">Cart</h1>
-            <img src="assets/img/green.gif" alt="Online" class="ui-btn-left alert-imgOn activeImg">
-            <div class="ui-btn-right">
-                <a href="#Item-Info-Search" data-transition="flip">
-                    <div class="ui-btn ui-input-btn ui-corner-all ui-shadow " style="background: #1390cf" onclick="fun_nextItem()">
-                        <img id="Add-item" src="assets/img/plus.png" alt="Add Item">
-                    </div>
-                </a>
-            </div>
+            <img src="assets/img/green.gif" alt="Online" class="ui-btn-right alert-imgOn activeImg">
+            <a onclick="fun_nextItem()" href="#Item-Info-Search" data-transition="flip" data-icon="plus" data-iconpos="notext" style="background-color: white;">Add</a>
+
         </div>
         <!-- /header -->
         <div role="main" class="ui-content">
@@ -369,7 +325,8 @@
             </div>
             <div id="Item-grid-table">
                 <center>
-                    <p id="itm-cnt" style="margin-top:-8px;"></p>
+                    <p id="itm-cnt" style="margin-top:-8px;margin-bottom:0px;"></p>
+                    <label id="cart-total-amt" style="color:#1390cf"></label>
                 </center>
                 <div data-theme="b" class="my-page" style="margin-top: -32px;">
 
@@ -381,6 +338,12 @@
                     </div>
                     <div role="main" class="ui-content" style="overflow-x: visible; width: 90%" id="grid_Sale">
                         <ul data-role="listview" data-inset="true" id="Itm_GridSale" class="touch" data-icon="false" data-split-icon="delete"></ul>
+                    </div>
+                    <div role="main" class="ui-content" style="overflow-x: visible; width: 90%" id="grid_QTTN">
+                        <ul data-role="listview" data-inset="true" id="Itm_GridQTTN" class="touch" data-icon="false" data-split-icon="delete"></ul>
+                    </div>
+                    <div role="main" class="ui-content" style="overflow-x: visible; width: 90%" id="grid_QTNW">
+                        <ul data-role="listview" data-inset="true" id="Itm_GridQTNW" class="touch" data-icon="false" data-split-icon="delete"></ul>
                     </div>
                     <table class="ui-content" style="margin-top: -30px; margin-left: 10px; padding: 0; width: 90%;">
                         <tr>
@@ -534,9 +497,11 @@
             <a onclick="homePage()" data-transition="flip" data-icon="home" data-iconpos="notext" class="footer-img">home</a>
             <a data-icon="action" data-iconpos="notext" class="footer-img" onclick="fun_cancel()">exit</a>
             <!--<a href="#invoice-item-btn2-body" data-rel="popup" data-transition="flip" data-position-to="window" data-icon="carat-r" data-iconpos="notext" class="footer-img">next</a>-->
-            <a href="#div-Detail-Ord" data-icon="eye" data-iconpos="notext" style="float: right;" class="footer-img" onclick="SetInvoiceDtl()">Back</a>
+            <!--<a href="#div-Detail-Ord" data-icon="eye" data-iconpos="notext" style="float: right;" class="footer-img" onclick="SetInvoiceDtl()">Back</a>-->
+            <a data-rel="back" data-icon="carat-r" data-iconpos="notext" style="float: right;" class="footer-img" >next</a>
         </div>
     </div>
+
 
     <div data-role="page" id="Item-Info-Search" class="jqm-demos">
 
@@ -633,7 +598,7 @@
                                 <label id="lblItmBtch"></label>
                             </td>
                             <td>
-                                <div class="ui-corner-all " style="background-color: #137ab0; text-align: center; cursor: pointer; padding: 5px; margin-left: 10px;" onclick="fun_ShowChangeList()">
+                                <div class="ui-corner-all " style="background-color: #137ab0;width:80px; text-align: center; cursor: pointer; padding: 5px; margin-right: 2px;float:right" onclick="fun_ShowChangeList()">
                                     <img src="assets/img/loop31.png" alt="Change Batch" />
                                 </div>
                             </td>
@@ -713,7 +678,8 @@
                     <label class="msgText hide" id="msgText1">No Record Found...</label>
                     <label>Area Name</label>
                     <input type="text" id="area-srch" placeholder="Enter Area Name..." data-theme="a" data-type="search" onchange="serchtxt_clear(this,'2');" />
-                    <label>Party Name</label>
+                    <label >Party Name 
+                        <span style="float:right"><a href="#div-partyMst" data-transition="flip" style="background-color:#1390cf;border-radius:5px;padding:2vmin" > <img src="assets/img/plus.png" alt="Add Party"></a></span>  </label>
                     <input type="text" id="party-srch" placeholder="Enter Party Name..." data-theme="a" data-type="search" onchange="serchtxt_clear(this,'1');" />
                     <center>
                         <div id="div-party-info" class="display-none">
@@ -874,7 +840,8 @@
                         <center>
                             <div id="party-srch">
                                 <label class="msgText hide" id="msgText3">No Record Found...</label>
-                                <label style="font-weight:bold; margin-left:5px;">Party Name</label>
+                                <label >Party Name 
+                        <span style="float:right"><a href="#div-partyMst" data-transition="flip" style="background-color:#1390cf;border-radius:5px;padding:2vmin" > <img src="assets/img/plus.png" alt="Add Party"></a></span>  </label>
                                 <input type="text" data-type="search" name="user" id="txt-party-pa" value="" placeholder="Party Name" data-theme="a" onchange="serchtxt_clear(this,'5');">
                             </div>
                             <div id="party-srch-body" style="width:90%" class="display-none">
@@ -970,7 +937,8 @@
 
                 <div id="party-body">
                     <label class="msgText hide" id="msgText12">No Record Found...</label>
-                    <label>Party Name</label>
+                    <label >Party Name 
+                        <span style="float:right"><a href="#div-partyMst" data-transition="flip" style="background-color:#1390cf;border-radius:5px;padding:2vmin" > <img src="assets/img/plus.png" alt="Add Party"></a></span>  </label>
                     <input type="text" id="party-srch-ldg" placeholder="Enter Party Name..." data-theme="a" data-type="search" onchange="serchtxt_clear(this,'1');" />
                     <center>
                         <div id="div-party-info-ldg" class="display-none">
@@ -1030,6 +998,14 @@
                 <div id="pay-ser" class="ui-field-contain">
                     <label for="menupay">Payment Series:</label>
                     <select id="menupay" data-native-menu="false" class="filterable-select" onchange="SaveSer(this,'MNPY')"></select>
+                </div>
+                <div id="qttn-ser" class="ui-field-contain">
+                    <label for="menuqttn">Retail Quotation Series:</label>
+                    <select id="menuqttn" data-native-menu="false" class="filterable-select" onchange="SaveSer(this,'QTTN')"></select>
+                </div>
+                <div id="qtnw-ser" class="ui-field-contain">
+                    <label for="menuqtnw">Wholsale Quotation Series:</label>
+                    <select id="menuqtnw" data-native-menu="false" class="filterable-select" onchange="SaveSer(this,'QTNW')"></select>
                 </div>
                 <br />
                 <center>
@@ -1470,6 +1446,20 @@
                                <label id="Fmt" class="MISLblAmt">0.00</label>
                            </td>
                         </tr>
+                         <tr  class="MISRow">
+                           <td>
+                               <label>Quotation</label>
+                           </td>
+                             <td>
+                               <label id="qtdc" class="MISLblAmt">0.00</label>
+                           </td>
+                            <td>
+                               <label id="qtdt" class="MISLblAmt">0.00</label>
+                           </td>
+                            <td>
+                               <label id="qtmt" class="MISLblAmt">0.00</label>
+                           </td>
+                        </tr>
                         <tr>
                             <td colspan="4">
                                 <center><label id="misstk">0.00</label></center></td>
@@ -1619,7 +1609,8 @@
                 <div id="Div9">
                     <label id="Label3" class="lbl-right-top" style="margin-top: -20px; margin-right: -7px;">Sales Rep</label>
                     <label class="msgText hide" id="Label4">No Record Found...</label>
-                    <label>Party Name</label>
+                    <label >Party Name 
+                        <span style="float:right"><a href="#div-partyMst" data-transition="flip" style="background-color:#1390cf;border-radius:5px;padding:2vmin" > <img src="assets/img/plus.png" alt="Add Party"></a></span>  </label>
                     <input type="text" id="txtOrderParty" placeholder="Enter Party Name..." data-theme="a" onchange="serchtxt_clear(this,'8');" data-type="search" />
                     <center>
                         <div id="div10" class="display-none">
@@ -1880,94 +1871,62 @@
             </div>
         </div>
     </div>
+   
 
-    <!--/code by vivek page term and condition-->
-    <div data-role="page" id="Term-condition" class="app-set-tbl">
-        <!-- /header -->
-
-        <!-- /content -->
-        <div role="main" id="Div18" class="ui-content">
-            <center> 
-                <div  style="width: 1000px; box-sizing : border-box  ; text-align: center" class=" body-with-shadow.close"  >
-               
-            
-                <table style="text-align: center; " >
-                    <tr style="width: auto; text-align:center";>
-                        <td align="center" >
-                            <h5>-: Terms and Condition :-</h5>
-                        </td>
-                        
-                    </tr>
-                    <tr style="width: auto; text-align: center" id="Div19" >
-
-                        
-                        <td style="text-align: left" >
-
-                            <h6>1:- Do Not make Illegal copies of this Software.  The use of Software is completely restricted to the computer on which it is installed and for the Firm / Company / Individual for which it is developed.(Non-Transferrable)</h6>
-                            <h6>2:- We are purely a software firm and this software utility is develop for you on job work basis.</h6>
-                            <h6>3:- S/w. user rights once sold should not be returned whether you continue the use of the S/w. or Stop.</h6>
-
-                            <h6>4:- Our liability is restricted to Installation & Training on Software Application / Usages.</h6>
-                            <h6>5:- We shall be responsible & liable to answer/solve any queries of our clients only and which is limited to software application / Usages.</h6>
-                            <h6>6:- We shall alone has the exclusive rights to collect Lic Ren Chrgs of the software from our clients, as per the Lic Ren chrgs option selected by the client.</h6>
-                            <h6>7:- For any unpaid Lic Ren Chrgs and / or Installments, we shall has the right to lock the Software of the client.  The software may not work further and the paid amount will be forfeited.</h6>
-                             <h6>8:- No responsibility towards any Data Loss, System Failure, Erroneous Feedings / Invoicing.</h6>
-                             <h6>9:- Contact NOs: 0712-3294004, 3240909, 9370707169, 59, 49</h6>
-                             <h6>10:- We shall not respond to any calls if the problems are not related to us.</h6>
-                             <h6>11:- For any special / tailor made requirements / changes in software, client has to pay extra amount as and when decided.</h6>
-                             <h6>12:- The Product Information Service is not necessarily part of Software. It is being offered as an extra service.  The Content may or may not be fully informative and correct.  </h6>
-                             <h6>13:- Product Information Service can be withdraw any time out of our own free will....".  The up gradation of Product's Information will be under sole discretion of software provider.</h6>
-                             <h6>14:- Subject to Nagpur Jurisdiction Only.</h6>
-                             <h6></h6>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td align="center" style ="height :10px" >
-                           <img id="Img12" src="assets/img/exit-button.png" alt="Canecl" style ="height :100px" onclick="closewindow() " onmouseover='mOver(this)' onmouseout='mOut(this)'  >
-
-                        </td>
-                    </tr>
-
-                </table>
-            
-
-            </div>
-
-           </center>
-        </div>
-
-        <div data-role="footer" data-position="fixed" class="my-footer">
-            <p style="font-size: 12px;">Copyright &copy; - All Rights Reserved  www.goyalonline.com </p>
-
-        </div>
-    </div>
-
-    <!-- <div data-role="page" id="DisplaySetting" class="jqm-demos">
-        <div data-role="header" data-position="fixed" class="jqm-header" >
-            <img src="assets/img/green.gif" alt="Online" class="ui-btn-left alert-imgOn activeImg">
-            <h2 id="H9" style="color: white;">Display Setting</h2>
+     <div data-role="page" id="div-partyMst" class="jqm-demos">
+        <div data-role="header" data-position="fixed" class="jqm-header">
+            <a data-rel="back" data-icon="carat-l" data-iconpos="notext" style="margin-left: 10px; background-color: white;">Back</a>
+            <img src="assets/img/green.gif" alt="Online" class="ui-btn-right alert-imgOn activeImg">
+            <h2 id="h9" style="color: white;">Party Master</h2>
         </div>
         <div role="main" class="ui-content">
-            <center>
-                  
-                          <div class="ui-field-contain body-with-shadow">
-                            <label for="fontsize">Font Size:</label>
-                             <select name="fontsize" id="fontsize" onchange=" ChangeFontsize()">
-                                 <option value="5">5</option>
-                             <option value="6">6</option>
-                             <option value="7">7</option>
-                                <option value="8">8</option>
+            <div class="body-with-shadow">
+                <center>
+                    <table >
+                        <tr>                            
+                            <td colspan="2"> <div class="ui-field-contain" style="margin:0px;">
+                            <select name="ptype" id="ptype">
+                             <option value="C">Customer</option>
+                             <option value="S">Supplier</option>
                             </select>
-                             </div>                          
-                    
-            </center>
+                             </div>  </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Name </label>
+                            </td>
+                            <td><input type="text" id="Ntxtparty" /></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Area </label>
+                            </td>
+                            <td><input type="text" id="NtxtArea"/></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Mobile No  </label>
+                            </td>
+                            <td><input type="number" id="NtxtMob" /></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Address  </label>
+                            </td>
+                            <td><textarea id="NtxtAdd" style="resize: none;"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div id="div16" style="background-color:#1390cf;text-decoration:none;color:white" class="ui-btn ui-input-btn ui-corner-all ui-shadow " onclick="SaveAcpmst()">Save<input type="button" value="Save"  style="height:40px" ></div>
+                            </td>
+                        </tr>
+                    </table>
+                </center>
+            </div>
         </div>
         <div data-role="footer" data-position="fixed" class="my-footer">
-            <a data-rel="back" data-icon="carat-l" data-iconpos="notext" style="float: left;" class="footer-img">Back</a>
-            <a onclick="homePage()" data-icon="home" data-iconpos="notext" class="footer-img">home</a>
-            <a data-rel="back"  data-icon="carat-r" data-iconpos="notext" style="float: right;" class="footer-img">next</a>
+            <p style="font-size: 12px;">Copyright &copy; - All Rights Reserved  www.goyalonline.com </p>
         </div>
-    </div>-->
-
+    </div>
 </body>
 </html>

@@ -2,6 +2,12 @@
 /*yashaswi*/
 
 
+.app-set-tbl table tr {
+    background-color:white;
+    padding:4px 2px 4px 6px;
+    border-radius:3px;
+}
+
 .fontSize6vmin {
     font-size:20vw !important;
 }
@@ -65,7 +71,10 @@
 {
     color:red;
 }
-
+.MISLbl
+{
+    font-size:3vmin;
+}
 .MISLblAmt
 {
     text-align:right;
@@ -187,6 +196,33 @@
     box-shadow:#ddd 2px 1px 10px;
     padding-left:8px;
     padding-right:8px;
+}
+
+/*Vviek*/
+close {
+  position: absolute;
+  right: 32px;
+  top: 32px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
+}
+close:hover {
+  opacity: 1;
+}
+close:before, .close:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 33px;
+  width: 2px;
+  background-color: #333;
+}
+close:before {
+  transform: rotate(45deg);
+}
+close:after {
+  transform: rotate(-45deg);
 }
 
  .ui-autocomplete {
@@ -1134,29 +1170,4 @@ display:none;
 	background-color: #3399ff;
 	color: #fff;
 	text-shadow: none;
-}
-.close {
-  position: absolute;
-  right: 32px;
-  top: 32px;
-  width: 32px;
-  height: 32px;
-  opacity: 0.3;
-}
-.close:hover {
-  opacity: 1;
-}
-.close:before, .close:after {
-  position: absolute;
-  left: 15px;
-  content: ' ';
-  height: 33px;
-  width: 2px;
-  background-color: #333;
-}
-.close:before {
-  transform: rotate(45deg);
-}
-.close:after {
-  transform: rotate(-45deg);
 }
